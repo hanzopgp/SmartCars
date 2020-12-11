@@ -8,8 +8,8 @@
 //Add pause with spacebar
 
 var population;
-var nbCars = 100;
-var lifespan = 400;
+var nbCars = 300;
+var lifespan = 500;
 var counter = 0;
 var generationCounter = 0;
 var lifespanDisplay;
@@ -18,7 +18,7 @@ var oldMaxFitness;
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
-var magnitude = 0.7;
+var magnitude = 1;
 var countArrived = 0;
 
 function setup(){
