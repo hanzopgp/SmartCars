@@ -3,7 +3,7 @@ function Car(){
     this.velocity = createVector();
     this.acceleration = createVector();
     this.dna = new DNA();
-    this.dna.initRandomGenes();
+    this.dna.initGenes();
     this.fitness;
 
     this.applyForce = function(force){
@@ -19,7 +19,11 @@ function Car(){
 
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x, finishLine.y);
-        this.fitness = 1/distance;
+        this.fitness = map(distance, 0, width, width, 0);
+    }
+
+    this.setDNA = function(dna){
+        this.dna = dna;
     }
 
     this.show = function(){
@@ -32,7 +36,6 @@ function Car(){
         this.drawCar();
         pop();
     }
-
 
     this.drawCar = function(){
         rect(19, 0, 2, 8); //Capot avant
