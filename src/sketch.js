@@ -5,6 +5,7 @@
 //Add different colors
 //Color child depending his parents colors
 //Magnitude should be part of DNA
+//Add pause with spacebar
 
 var population;
 var nbCars = 100;

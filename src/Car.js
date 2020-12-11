@@ -39,7 +39,9 @@ function Car(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, width, 0);
         if(this.won){
-            this.fitness *= 10;
+            this.fitness *= 1.3;
+        }else{
+            this.fitness *= 0.8;
         }
     }
 
