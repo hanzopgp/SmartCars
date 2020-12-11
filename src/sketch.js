@@ -18,7 +18,7 @@ var oldMaxFitness;
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
-var magnitude = 0.4;
+var magnitude = 0.7;
 var countArrived = 0;
 
 function setup(){
