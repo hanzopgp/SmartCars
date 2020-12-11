@@ -6,16 +6,25 @@ function Car(){
     this.dna.initGenes();
     this.fitness;
     this.won = false;
+    this.trigger = true;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
     }
 
     this.update = function(){
-        if(this.position.y < finishLine.y + (finishLineHeight/2)){
-            if(this.position.x > finishLine.x - ((finishLineWidth/2)) && this.position.x < finishLine.x + (finishLineWidth/2)){
+        var yMin = (this.position.y < finishLine.y + (finishLineHeight/2));
+        var yMax = (this.position.y > finishLine.y - (finishLineHeight/2));
+        var xMin = (this.position.x < finishLine.x + (finishLineWidth/2));
+        var xMax = (this.position.x > finishLine.x - ((finishLineWidth/2)));
+        if(yMin && yMax){
+            if(xMin && xMax){
                 this.won = true;
                 this.position = finishLine.copy();
+                if(this.trigger){
+                    countArrived++;
+                }
+                this.trigger = false;
             }
         }
         if(!this.won){
@@ -29,7 +38,7 @@ function Car(){
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, width, 0);
-        if(this.completed){
+        if(this.won){
             this.fitness *= 10;
         }
     }

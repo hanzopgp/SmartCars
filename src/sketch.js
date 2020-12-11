@@ -17,7 +17,8 @@ var oldMaxFitness;
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
-var magnitude = 0.4;
+var magnitude = 2;
+var countArrived = 0;
 
 function setup(){
     createCanvas(1900, 900);
@@ -28,16 +29,19 @@ function setup(){
 
 function draw(){
     background(0);
-    drawTxt();
+    drawBackgroundTxt();
+    drawTimeRemaining();
     drawMaxFitness(maxFitnessDisplay);
     drawFinishLine();
     drawMaxFitnessDifference();
     drawGenerationCounter();
+    drawNumberArrived();
     drawWalls();
     population.run();
     counter++;
     if(counter == lifespan){
         generationCounter++;
+        countArrived = 0;
         applyGeneticAlgorithm();
     }
 }
@@ -49,7 +53,26 @@ function applyGeneticAlgorithm(){
     population.naturalSelection();
 }
 
-function drawTxt(){
+function drawNumberArrived(){
+    push();
+	strokeWeight(1);
+	fill(255);
+    textSize(25);
+    text(countArrived, finishLine.x - finishLineWidth, finishLine.y + 15);
+    pop();
+}
+
+function drawBackgroundTxt(){
+    push();
+	strokeWeight(1);
+	fill(255);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("S  m  a  r  t  C  a  r  s", width/2, height/2);
+    pop();
+}
+
+function drawTimeRemaining(){
     push();
 	strokeWeight(1);
 	fill(0);
