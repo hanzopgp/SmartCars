@@ -2,7 +2,7 @@
 
 # Presentation
 
->I'm trying to make a genetic algorithm play a simple game using P5.js, not sure about that game right now. I will try to end this project before the end of the year ! More information coming soon. [You can't see the program here.](https://hanzopgp.github.io/SmartCars/)
+>I'm trying to make a genetic algorithm play a simple game using P5.js, not sure about that game right now. I will try to end this project before the end of the year ! More information coming soon. You can see the program [here](https://hanzopgp.github.io/SmartCars/).
 
 ## Current TODO :
 
