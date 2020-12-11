@@ -1,13 +1,13 @@
-var bullet;
+var car;
 
 function setup(){
-    createCanvas(1900, 920);
-    bullet = new Bullet();
-    bullet.applyForce(1);
+    createCanvas(800, 800);
+    car = new Car();
+    car.applyForce(1);
 }
 
 function draw(){
     background(0);
-    bullet.update();
-    bullet.show();
+    car.update();
+    car.show();
 }

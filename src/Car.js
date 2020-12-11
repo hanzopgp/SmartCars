@@ -1,6 +1,6 @@
-function Bullet(){
-    this.position = createVector(0, height/2);
-    this.velocity = createVector();
+function Car(){
+    this.position = createVector(width/2, height);
+    this.velocity = p5.Vector.random2D();
     this.acceleration = createVector();
 
     this.applyForce = function(force){
@@ -16,7 +16,7 @@ function Bullet(){
     this.show = function(){
         push();
         translate(this.position.x, this.position.y);
-        rotate(77);
+        rotate(this.velocity.heading());
         rectMode(CENTER);
         rect(0, 0, 10, 50);
         pop();
