@@ -45,6 +45,7 @@ function Population(){
             dnaPopulation.splice(dnaPopulation.indexOf(parent1), 1); //Making sure both parents are different
             var parent2 = random(dnaPopulation).dna;
             var child = parent1.crossOver(parent2);
+            child.mutation();
             var newCar = new Car();
             newCar.setDNA(child);
             newListCars[i] = newCar;

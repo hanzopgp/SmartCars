@@ -1,6 +1,13 @@
+//TODO :
+//Add time remaning as a factor for cars fitness
+//Add walls
+//Change graphics
+//Add different colors
+//Color child depending his parents colors
+
 var population;
 var nbCars = 100;
-var lifespan = 200;
+var lifespan = 300;
 var counter = 0;
 var lifespanDisplay;
 var maxFitnessDisplay;
@@ -8,6 +15,7 @@ var oldMaxFitness;
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
+var magnitude = 0.4;
 
 function setup(){
     createCanvas(900, 900);

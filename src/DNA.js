@@ -7,9 +7,18 @@ function DNA(){
         }else{
             for(var i = 0; i < lifespan; i++){
                 this.genes[i] = p5.Vector.random2D(); //Random move
-                this.genes[i].setMag(0.2); //Vitesse
+                this.genes[i].setMag(magnitude); //Vitesse
             }
         } 
+    }
+
+    this.mutation = function(){
+        for(var i = 0; i < this.genes.length; i++){
+            if(random(1) < 0.01){
+                this.genes[i] = p5.Vector.random2D();
+                this.genes[i].setMag(magnitude);
+            }
+        }
     }
 
     this.crossOver = function(partner){

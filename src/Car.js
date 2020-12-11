@@ -5,21 +5,33 @@ function Car(){
     this.dna = new DNA();
     this.dna.initGenes();
     this.fitness;
+    this.won = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
     }
 
     this.update = function(){
-        this.applyForce(this.dna.genes[counter]);
-        this.velocity.add(this.acceleration);
-        this.position.add(this.velocity);
-        this.acceleration.mult(0);
+        if(this.position.y < finishLine.y + (finishLineHeight/2)){
+            if(this.position.x > finishLine.x - ((finishLineWidth/2)) && this.position.x < finishLine.x + (finishLineWidth/2)){
+                this.won = true;
+                this.position = finishLine.copy();
+            }
+        }
+        if(!this.won){
+            this.applyForce(this.dna.genes[counter]);
+            this.velocity.add(this.acceleration);
+            this.position.add(this.velocity);
+            this.acceleration.mult(0);
+        }
     }
 
     this.calculateFitness = function(){
-        var distance = dist(this.position.x, this.position.y, finishLine.x - (finishLineWidth/2), finishLine.y - (finishLineHeight/2));
+        var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, width, 0);
+        if(this.completed){
+            this.fitness *= 10;
+        }
     }
 
     this.setDNA = function(dna){
