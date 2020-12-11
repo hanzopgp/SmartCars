@@ -9,7 +9,7 @@
 
 var population;
 var nbCars = 100;
-var lifespan = 300;
+var lifespan = 400;
 var counter = 0;
 var generationCounter = 0;
 var lifespanDisplay;
@@ -18,7 +18,7 @@ var oldMaxFitness;
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
-var magnitude = 2;
+var magnitude = 0.4;
 var countArrived = 0;
 
 function setup(){
