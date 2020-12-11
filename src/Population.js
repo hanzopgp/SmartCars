@@ -34,6 +34,7 @@ function Population(){
                 this.matingPool.push(this.listCars[i]);
             }
         }
+        return maxFitness;
     }
 
     this.naturalSelection = function(){
