@@ -18,7 +18,7 @@ function Car(){
     }
 
     this.calculateFitness = function(){
-        var distance = dist(this.position.x, this.position.y, finishLine.x, finishLine.y);
+        var distance = dist(this.position.x, this.position.y, finishLine.x - (finishLineWidth/2), finishLine.y - (finishLineHeight/2));
         this.fitness = map(distance, 0, width, width, 0);
     }
 

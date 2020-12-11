@@ -6,6 +6,8 @@ var lifespanDisplay;
 var maxFitnessDisplay;
 var oldMaxFitness;
 var finishLine;
+var finishLineWidth = 100;    
+var finishLineHeight = 15;
 
 function setup(){
     createCanvas(900, 900);
@@ -54,14 +56,12 @@ function drawTxt(){
 }
 
 function drawFinishLine(){
-    var width = 100;    
-    var height = 15;
     var nbSquares = 20;
     fill(255);
-    rect(finishLine.x - (width/2), finishLine.y, width, height);
-    for(var i = -(width/2); i <= width/2; i+=width/(nbSquares/2)){
+    rect(finishLine.x - (finishLineWidth/2), finishLine.y, finishLineWidth, finishLineHeight);
+    for(var i = -(finishLineWidth/2); i <= finishLineWidth/2; i += finishLineWidth/(nbSquares/2)){
         fill(0,0,255);
-        rect(finishLine.x + i, finishLine.y, width/nbSquares, height);
+        rect(finishLine.x + i, finishLine.y, finishLineWidth/nbSquares, finishLineHeight);
     }
 }
 
