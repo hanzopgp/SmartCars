@@ -86,7 +86,8 @@ function drawMaxFitness(){
 	fill(255);
     textSize(18);
     if(maxFitnessDisplay){
-        text("Max fitness : " + floor(maxFitnessDisplay, 5), 30, 106);
+        text("Max fitness : " + floor(maxFitnessDisplay), 30, 106);
+        //text("Best fitness : " + map(maxFitnessDisplay, 0, maxFitnessDisplay, 0, 1), 30, 106);
     }else{
         text("No value yet !", 30, 106);
     }
