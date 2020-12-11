@@ -4,11 +4,13 @@
 //Change graphics
 //Add different colors
 //Color child depending his parents colors
+//Magnitude should be part of DNA
 
 var population;
 var nbCars = 100;
 var lifespan = 300;
 var counter = 0;
+var generationCounter = 0;
 var lifespanDisplay;
 var maxFitnessDisplay;
 var oldMaxFitness;
@@ -18,7 +20,7 @@ var finishLineHeight = 15;
 var magnitude = 0.4;
 
 function setup(){
-    createCanvas(900, 900);
+    createCanvas(1900, 900);
     population = new Population();
     population.initPopulation();
     finishLine = createVector(width/2, 20);
@@ -30,10 +32,12 @@ function draw(){
     drawMaxFitness(maxFitnessDisplay);
     drawFinishLine();
     drawMaxFitnessDifference();
+    drawGenerationCounter();
     drawWalls();
     population.run();
     counter++;
     if(counter == lifespan){
+        generationCounter++;
         applyGeneticAlgorithm();
     }
 }
@@ -107,6 +111,18 @@ function drawMaxFitnessDifference(){
     }else{
         text("No value yet !", 30, 155);
     }
+    pop();
+}
+
+function drawGenerationCounter(){
+    push();
+	strokeWeight(1);
+	fill(0);
+	stroke(0,0,255);
+	rect(20,180,190,40);
+	fill(255);
+    textSize(18);
+    text("Generation : " + generationCounter, 30, 205);
     pop();
 }
 
