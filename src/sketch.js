@@ -1,6 +1,6 @@
 var population;
 var nbCars = 100;
-var lifespan = 200;
+var lifespan = 400;
 var counter = 0;
 var lifespanDisplay;
 var finishLine;
@@ -48,5 +48,5 @@ function drawFinishLine(){
 function resetSimulation(){
     counter = 0;
     population = new Population();
-    population.initPopulation;
+    population.initPopulation();
 }
