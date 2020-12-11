@@ -1,8 +1,16 @@
 function Population(){
     this.listCars = [];
-    this.nbCars = 10;
+    
+    this.initPopulation = function(){
+        for(var i = 0; i < nbCars; i++){
+            this.listCars[i] = new Car();
+        }
+    }
 
-    for(var i = 0; i < this.nbCars; i++){
-        this.listCars[i] = new Car();
+    this.run = function(){
+        for(var i = 0; i < nbCars; i++){
+            this.listCars[i].update();
+            this.listCars[i].show();
+        }
     }
 }
