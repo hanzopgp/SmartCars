@@ -42,7 +42,15 @@ function drawTxt(){
 }
 
 function drawFinishLine(){
-    rect(finishLine.x - 50, finishLine.y, 100, 20);
+    var width = 100;    
+    var height = 15;
+    var nbSquares = 20;
+    fill(255);
+    rect(finishLine.x - (width/2), finishLine.y, width, height);
+    for(var i = -(width/2); i <= width/2; i+=width/(nbSquares/2)){
+        fill(0,0,255);
+        rect(finishLine.x + i, finishLine.y, width/nbSquares, height);
+    }
 }
 
 function resetSimulation(){
