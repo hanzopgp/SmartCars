@@ -10,5 +10,4 @@
 //Add walls
 //Change graphics
 //Add different colors
-//Color child depending his parents colors
 //Magnitude should be part of DNA

@@ -3,7 +3,6 @@
 //Add walls
 //Change graphics
 //Add different colors
-//Color child depending his parents colors
 //Magnitude should be part of DNA
 
 var population;
@@ -18,13 +17,19 @@ var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 var magnitude = 1;
-var countArrived = 0;
+var countBlueArrived = 0;
+var countRedArrived = 0;
 var pause = 1;
+var multiplierIfWin = 5;
+var multiplierIfLost = 0.5;
+var nbRedCars = 0;
+var nbBlueCars = 0;
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
     population = new Population();
     population.initPopulation();
+    population.countNbColorCars();
     finishLine = createVector(width/2, 20);
 }
 
@@ -36,13 +41,17 @@ function draw(){
     drawFinishLine();
     drawMaxFitnessDifference();
     drawGenerationCounter();
-    drawNumberArrived();
+    drawBlueArrived();
+    drawRedArrived();
     drawWalls();
     population.run();
     counter++;
     if(counter == lifespan){
         generationCounter++;
-        countArrived = 0;
+        countBlueArrived = 0;
+        countRedArrived = 0;
+        nbBlueCars = 0;
+        nbRedCars = 0;
         applyGeneticAlgorithm();
     }
 }
@@ -52,6 +61,7 @@ function applyGeneticAlgorithm(){
     oldMaxFitness = maxFitnessDisplay;
     maxFitnessDisplay = population.evaluate();
     population.naturalSelection();
+    population.countNbColorCars();
 }
 
 function keyPressed(){
@@ -69,13 +79,30 @@ function keyPressed(){
 	}
 }
 
+function drawBlueArrived(){
+    push();
+    strokeWeight(1);
+    fill(0, 0, 255);
+    textSize(25);
+    text(floor((countBlueArrived*100)/nbBlueCars) + "%", finishLine.x - finishLineWidth - 85, finishLine.y + 15);
+    text(countBlueArrived, finishLine.x - finishLineWidth - 15, finishLine.y + 15);
+    pop();
+}
 
-function drawNumberArrived(){
+function drawRedArrived(){
     push();
 	strokeWeight(1);
-	fill(255);
+    fill(255, 0, 0);
     textSize(25);
-    text(countArrived, finishLine.x - finishLineWidth, finishLine.y + 15);
+    console.log("red : " + nbRedCars);
+    console.log("redArrived : " + countRedArrived);
+    if(nbRedCars != 0){
+        text(floor((countRedArrived*100)/nbRedCars) + "%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
+    }else{
+        text("0%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
+
+    }
+    text(countRedArrived, finishLine.x + finishLineWidth, finishLine.y + 15);
     pop();
 }
 

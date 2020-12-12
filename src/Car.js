@@ -23,7 +23,12 @@ function Car(){
                 this.won = true;
                 this.position = finishLine.copy();
                 if(this.trigger){
-                    countArrived++;
+                    if(this.hasBestGenes){
+                        countRedArrived++;
+                    }else{
+                        countBlueArrived++;
+                    }
+                    
                 }
                 this.trigger = false;
             }
@@ -40,9 +45,9 @@ function Car(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, width, 0);
         if(this.won){
-            this.fitness *= 1.5;
+            this.fitness *= multiplierIfWin;
         }else{
-            this.fitness *= 0.7;
+            this.fitness *= multiplierIfLost;
         }
     }
 

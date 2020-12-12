@@ -1,7 +1,7 @@
 function Population(){
     this.listCars = [];
     this.matingPool = [];
-    
+
     this.initPopulation = function(){
         for(var i = 0; i < nbCars; i++){
             this.listCars[i] = new Car();
@@ -29,12 +29,10 @@ function Population(){
         //The higher the fitness value, the higher the chance for those cars to reproduct
         for(var i = 0; i < nbCars; i++){
             var n = this.listCars[i].fitness * 100;
-            console.log(this.listCars[i].fitness);
             for(var j = 0; j < n; j++){
                 this.matingPool.push(this.listCars[i]);
             }
         }
-        console.log(maxFitness);
         return maxFitness;
     }
 
@@ -48,10 +46,23 @@ function Population(){
             var child = parent1.crossOver(parent2);
             child.mutation();
             var newCar = new Car();
+            if(this.listCars[i].fitness == 1){
+                newCar.hasBestGenes = true;
+            }
             newCar.setDNA(child);
             newListCars[i] = newCar;
         }
         this.listCars = newListCars;
+    }
+
+    this.countNbColorCars = function(){
+        for(var i = 0; i < this.listCars.length; i++){
+            if(this.listCars[i].hasBestGenes){
+                nbRedCars++;
+            }else{
+                nbBlueCars++;
+            }
+        }
     }
 
     this.run = function(){
