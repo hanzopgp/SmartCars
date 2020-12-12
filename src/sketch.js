@@ -1,7 +1,6 @@
 //TODO :
 //Add time remaning as a factor for cars fitness
 //add magnitude as part of DNA
-//Add walls
 //Change graphics
 
 var population;
@@ -9,7 +8,10 @@ var lifespanDisplay;
 var maxFitnessDisplay;
 var oldMaxFitness;
 
-var nbCars = 200;
+var listWalls = [];
+var thickness = 40;
+
+var nbCars = 500;
 var lifespan = 300;
 var counter = 0;
 var generationCounter = 0;
@@ -23,10 +25,15 @@ var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 
-var magnitude = 0.3;
-var multiplierIfWin = 5;
-var multiplierIfLost = 5;
-var mutationChance = 0.01;
+var magnitude = 3;
+var multiplierIfWin = 50;
+var multiplierIfDead = 50;
+var multiplierIfAlive = 10;
+var multiplierIfGood = 10;
+var goodFitnessValue = 90;
+var badFitnessValue = 40;
+var multiplierIfBad = 10;
+var mutationChance = 0.02;
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -34,18 +41,19 @@ function setup(){
     population.initPopulation();
     population.countNbColorCars();
     finishLine = createVector(width/2, 20);
+    var wall1 = new Wall(width - windowWidth/2 - 100, 270, windowWidth/2 + 100, thickness);
+    var wall2 = new Wall(width - windowWidth/2 - 100, 270, thickness, 100);
+    var wall3 = new Wall(0, height/1.5, windowWidth/2 + 50, thickness);
+    var wall4 = new Wall(windowWidth/2 + 50, height/1.5 + thickness, thickness, -100);
+    listWalls.push(wall1, wall3);
 }
 
 function draw(){
     background(0);
-    drawBackgroundTxt();
-    drawTimeRemaining();
-    drawMaxFitness(maxFitnessDisplay);
-    drawFinishLine();
-    drawMaxFitnessDifference();
-    drawGenerationCounter();
-    drawBlueArrived();
-    drawGreenArrived();
+    for(var i = 0; i < listWalls.length; i++){
+        listWalls[i].show();
+    }
+    drawInfo();
     population.run();
     counter++;
     if(counter == lifespan){
@@ -56,6 +64,17 @@ function draw(){
         nbGreenCars = 0;
         applyGeneticAlgorithm();
     }
+}
+
+function drawInfo(){
+    drawBackgroundTxt();
+    drawTimeRemaining();
+    drawMaxFitness(maxFitnessDisplay);
+    drawFinishLine();
+    drawMaxFitnessDifference();
+    drawGenerationCounter();
+    drawBlueArrived();
+    drawGreenArrived();
 }
 
 function applyGeneticAlgorithm(){

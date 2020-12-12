@@ -34,18 +34,23 @@ function Car(){
                 this.trigger = false;
             }
         }
-        var rx = windowWidth/2  - windowWidth/4 - 10;
-        var ry = windowHeight/2 - 30;
-        var rw = windowWidth/2;
-        var rh = 20;
-        if (this.position.x > rx && this.position.x < rx + rw && this.position.y > ry && this.position.y < ry + rh) {
-            this.dead = true;
-        }
+        //var rx = windowWidth/2  - windowWidth/4 - 10;
+        //var ry = windowHeight/2 - 30;
+        //var rw = windowWidth/2;
+        //var rh = 20;
+        //if (this.position.x > rx && this.position.x < rx + rw && this.position.y > ry && this.position.y < ry + rh) {
+        //    this.dead = true;
+        //}
         if (this.position.x > width || this.position.x < 0) {
             this.dead = true;
         }
         if (this.position.y > height || this.position.y < 0) {
             this.dead = true;
+        }
+        for(var i = 0; i < listWalls.length; i++){
+            if(this.hit(listWalls[i])){
+                this.dead = true;
+            }
         }
         if(!this.won && !this.dead){
             this.applyForce(this.dna.genes[counter]);
@@ -55,13 +60,26 @@ function Car(){
         }
     }
 
+    this.hit = function(wall){
+        if (this.position.x > wall.position.x && this.position.x < wall.position.x + wall.w && this.position.y > wall.position.y && this.position.y < wall.position.y + wall.h) {
+            return true;
+        }
+        return false;
+    }
+
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, 100, 0);
-        if(this.won){
+        if(this.fitness > goodFitnessValue){
+            this.fitness *= multiplierIfGood;
+        }else if(this.fitness < badFitnessValue){
+            this.fitness /= multiplierIfBad;
+        }else if(this.won){
             this.fitness *= multiplierIfWin;
         }else if(this.dead){
-            this.fitness /= multiplierIfLost;
+            this.fitness /= multiplierIfDead;
+        }else{
+            this.fitness *= multiplierIfAlive;
         }
     }
 
