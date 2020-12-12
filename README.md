@@ -2,7 +2,7 @@
 
 # Presentation
 
->This is a car race game played by a genetic algorithm. You can see the program [here](https://hanzopgp.github.io/SmartCars/).
+>This is a car race game played by a genetic algorithm. This is my first program using genetic algorithm. You can see the program [here](https://hanzopgp.github.io/SmartCars/).
 
 ## How does it work :
 
@@ -20,7 +20,7 @@
 
 ## How to use :
 
-- `git clone this repository`
+- git clone this repository
 - Put **index.html** in your browser
 - Use 'P' to pause the simulation
 - Settings are currently at the top of **sketch.js**
