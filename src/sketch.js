@@ -7,7 +7,7 @@
 
 var population;
 var nbCars = 200;
-var lifespan = 300;
+var lifespan = 250;
 var counter = 0;
 var generationCounter = 0;
 var lifespanDisplay;
@@ -20,7 +20,7 @@ var magnitude = 1;
 var countBlueArrived = 0;
 var countRedArrived = 0;
 var pause = 1;
-var multiplierIfWin = 5;
+var multiplierIfWin = 2;
 var multiplierIfLost = 0.5;
 var nbRedCars = 0;
 var nbBlueCars = 0;
@@ -43,7 +43,6 @@ function draw(){
     drawGenerationCounter();
     drawBlueArrived();
     drawRedArrived();
-    drawWalls();
     population.run();
     counter++;
     if(counter == lifespan){
@@ -94,8 +93,6 @@ function drawRedArrived(){
 	strokeWeight(1);
     fill(255, 0, 0);
     textSize(25);
-    console.log("red : " + nbRedCars);
-    console.log("redArrived : " + countRedArrived);
     if(nbRedCars != 0){
         text(floor((countRedArrived*100)/nbRedCars) + "%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
     }else{
@@ -124,13 +121,7 @@ function drawTimeRemaining(){
 	rect(20,30,190,40);
 	fill(255);
     textSize(18);
-    if((lifespan - counter) > 0){
-        text("Time remaining : " + (lifespan - counter), 30, 58);
-    }else{
-        strokeWeight(0);
-        fill(255, 0, 0);
-        text("Cars are dead ! :(", 30, 58);
-    }
+    text("Time remaining : " + (lifespan - counter), 30, 58);
 	pop();
 }
 
@@ -192,8 +183,4 @@ function drawGenerationCounter(){
     textSize(18);
     text("Generation : " + generationCounter, 30, 205);
     pop();
-}
-
-function drawWalls(){
-
 }

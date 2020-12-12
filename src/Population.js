@@ -25,7 +25,7 @@ function Population(){
         }
         //Reseting mating pool
         this.matingPool = [];   
-        //Cars fitness are between 0 and 100
+        //Cars fitness are between 0 and 1
         //The higher the fitness value, the higher the chance for those cars to reproduct
         for(var i = 0; i < nbCars; i++){
             var n = this.listCars[i].fitness * 100;

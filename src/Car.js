@@ -1,13 +1,14 @@
 function Car(){
     this.position = createVector(width/2, height);
-    this.velocity = createVector();
+    this.velocity = createVector(0);
     this.acceleration = createVector();
     this.dna = new DNA();
     this.dna.initGenes();
-    this.fitness;
+    this.fitness = 0;
     this.won = false;
     this.trigger = true;
     this.hasBestGenes = false;
+    this.dead = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
@@ -33,7 +34,20 @@ function Car(){
                 this.trigger = false;
             }
         }
-        if(!this.won){
+        var rx = windowWidth/2  - windowWidth/4;
+        var ry = windowHeight/2 - 30;
+        var rw = windowWidth/2;
+        var rh = 20;
+        if (this.position.x > rx && this.position.x < rx + rw && this.position.y > ry && this.position.y < ry + rh) {
+            this.dead = true;
+        }
+        if (this.position.x > width || this.position.x < 0) {
+            this.dead = true;
+        }
+        if (this.position.y > height || this.position.y < 0) {
+            this.dead = true;
+        }
+        if(!this.won && !this.dead){
             this.applyForce(this.dna.genes[counter]);
             this.velocity.add(this.acceleration);
             this.position.add(this.velocity);
@@ -43,10 +57,10 @@ function Car(){
 
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
-        this.fitness = map(distance, 0, width, width, 0);
+        this.fitness = map(distance, 0, width, 100, 0);
         if(this.won){
             this.fitness *= multiplierIfWin;
-        }else{
+        }else if(this.dead){
             this.fitness *= multiplierIfLost;
         }
     }
