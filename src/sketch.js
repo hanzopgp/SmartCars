@@ -1,9 +1,9 @@
 //TODO :
 //Add time remaning as a factor for cars fitness
+//add magnitude as part of DNA
 //Add walls
 //Change graphics
-//Add different colors
-//Magnitude should be part of DNA
+
 
 var population;
 var nbCars = 200;
