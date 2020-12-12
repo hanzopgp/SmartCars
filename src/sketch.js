@@ -1,7 +1,8 @@
 //TODO :
 //Add time remaning as a factor for cars fitness
-//add magnitude as part of DNA
+//Add magnitude as part of DNA
 //Change graphics
+//GoodFitnessValue should not be raw, should be depending percentage 
 
 var population;
 var lifespanDisplay;
@@ -12,7 +13,7 @@ var listWalls = [];
 var thickness = 40;
 
 var nbCars = 500;
-var lifespan = 300;
+var lifespan = 400;
 var counter = 0;
 var generationCounter = 0;
 var countBlueArrived = 0;
@@ -25,15 +26,17 @@ var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 
-var magnitude = 3;
+var magnitude = 0.5;
+var mutationChance = 0.02;
+
 var multiplierIfWin = 50;
-var multiplierIfDead = 50;
+var multiplierIfDead = 10;
 var multiplierIfAlive = 10;
-var multiplierIfGood = 10;
+
+var multiplierIfGood = 5;
 var goodFitnessValue = 90;
 var badFitnessValue = 40;
-var multiplierIfBad = 10;
-var mutationChance = 0.02;
+var multiplierIfBad = 5;
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
