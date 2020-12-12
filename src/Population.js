@@ -9,8 +9,6 @@ function Population(){
     }
 
     this.evaluate = function(){
-        //Reseting mating pool
-        this.matingPool = [];
         var maxFitness = 0;
         //Calculating each cars fitness and max fitness
         for(var i = 0; i < nbCars; i++){
@@ -25,15 +23,18 @@ function Population(){
                 this.listCars[i].fitness /= maxFitness;
             }
         }
+        //Reseting mating pool
+        this.matingPool = [];   
         //Cars fitness are between 0 and 100
         //The higher the fitness value, the higher the chance for those cars to reproduct
         for(var i = 0; i < nbCars; i++){
             var n = this.listCars[i].fitness * 100;
-            this.listCars[i].fitness /= maxFitness;
+            console.log(this.listCars[i].fitness);
             for(var j = 0; j < n; j++){
                 this.matingPool.push(this.listCars[i]);
             }
         }
+        console.log(maxFitness);
         return maxFitness;
     }
 

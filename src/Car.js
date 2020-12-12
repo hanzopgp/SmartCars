@@ -7,6 +7,7 @@ function Car(){
     this.fitness;
     this.won = false;
     this.trigger = true;
+    this.hasBestGenes = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
@@ -52,7 +53,11 @@ function Car(){
     this.show = function(){
         push();
         noStroke();
-        fill(0, 0, 255, 150);
+        if(this.hasBestGenes){
+            fill(255, 0, 0, 150);
+        }else{
+            fill(0, 0, 255, 150);
+        }
         translate(this.position.x, this.position.y);
         rotate(this.velocity.heading());
         rectMode(CENTER);

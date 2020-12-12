@@ -5,11 +5,10 @@
 //Add different colors
 //Color child depending his parents colors
 //Magnitude should be part of DNA
-//Add pause with spacebar
 
 var population;
-var nbCars = 300;
-var lifespan = 500;
+var nbCars = 200;
+var lifespan = 300;
 var counter = 0;
 var generationCounter = 0;
 var lifespanDisplay;
@@ -20,9 +19,10 @@ var finishLineWidth = 100;
 var finishLineHeight = 15;
 var magnitude = 1;
 var countArrived = 0;
+var pause = 1;
 
 function setup(){
-    createCanvas(1900, 900);
+    createCanvas(windowWidth - 40, windowHeight - 40);
     population = new Population();
     population.initPopulation();
     finishLine = createVector(width/2, 20);
@@ -53,6 +53,22 @@ function applyGeneticAlgorithm(){
     maxFitnessDisplay = population.evaluate();
     population.naturalSelection();
 }
+
+function keyPressed(){
+	if(key == "p"){
+		if(pause == 0){
+            console.log("hi");
+			noLoop();
+			pause = 1;
+		}
+		else{
+			loop();
+			pause = 0;
+		}
+
+	}
+}
+
 
 function drawNumberArrived(){
     push();
