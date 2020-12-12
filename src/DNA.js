@@ -14,7 +14,7 @@ function DNA(){
 
     this.mutation = function(){
         for(var i = 0; i < this.genes.length; i++){
-            if(random(1) < 0.01){
+            if(random(1) < mutationChance){
                 this.genes[i] = p5.Vector.random2D();
                 this.genes[i].setMag(magnitude);
             }

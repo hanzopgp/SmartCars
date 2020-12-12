@@ -16,7 +16,9 @@
 - Those mutations are just a tiny random difference in their DNA.
 - Their DNA is all the values assigned to their movements.
 - Thanks to all that stuff, the population evolves.
-- Red cars are the children of former generation's best cars.
+- Green cars are the children of former generation's best cars.
+- Red cars are the crashed cars.
+- Blue cars are the normal cars.
 
 ## How to use :
 

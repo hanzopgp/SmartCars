@@ -28,7 +28,7 @@ function Population(){
         //Cars fitness are between 0 and 1
         //The higher the fitness value, the higher the chance for those cars to reproduct
         for(var i = 0; i < nbCars; i++){
-            var n = this.listCars[i].fitness * 100;
+            var n = floor(this.listCars[i].fitness * 100);
             for(var j = 0; j < n; j++){
                 this.matingPool.push(this.listCars[i]);
             }
@@ -58,7 +58,7 @@ function Population(){
     this.countNbColorCars = function(){
         for(var i = 0; i < this.listCars.length; i++){
             if(this.listCars[i].hasBestGenes){
-                nbRedCars++;
+                nbGreenCars++;
             }else{
                 nbBlueCars++;
             }

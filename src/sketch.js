@@ -4,26 +4,29 @@
 //Add walls
 //Change graphics
 
-
 var population;
-var nbCars = 200;
-var lifespan = 250;
-var counter = 0;
-var generationCounter = 0;
 var lifespanDisplay;
 var maxFitnessDisplay;
 var oldMaxFitness;
+
+var nbCars = 200;
+var lifespan = 300;
+var counter = 0;
+var generationCounter = 0;
+var countBlueArrived = 0;
+var countGreenArrived = 0;
+var nbGreenCars = 0;
+var nbBlueCars = 0;
+var pause = 1;
+
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
-var magnitude = 1;
-var countBlueArrived = 0;
-var countRedArrived = 0;
-var pause = 1;
-var multiplierIfWin = 2;
-var multiplierIfLost = 0.5;
-var nbRedCars = 0;
-var nbBlueCars = 0;
+
+var magnitude = 0.3;
+var multiplierIfWin = 5;
+var multiplierIfLost = 5;
+var mutationChance = 0.01;
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -42,15 +45,15 @@ function draw(){
     drawMaxFitnessDifference();
     drawGenerationCounter();
     drawBlueArrived();
-    drawRedArrived();
+    drawGreenArrived();
     population.run();
     counter++;
     if(counter == lifespan){
         generationCounter++;
         countBlueArrived = 0;
-        countRedArrived = 0;
+        countGreenArrived = 0;
         nbBlueCars = 0;
-        nbRedCars = 0;
+        nbGreenCars = 0;
         applyGeneticAlgorithm();
     }
 }
@@ -88,18 +91,18 @@ function drawBlueArrived(){
     pop();
 }
 
-function drawRedArrived(){
+function drawGreenArrived(){
     push();
 	strokeWeight(1);
-    fill(255, 0, 0);
+    fill(0, 255, 0);
     textSize(25);
-    if(nbRedCars != 0){
-        text(floor((countRedArrived*100)/nbRedCars) + "%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
+    if(nbGreenCars != 0){
+        text(floor((countGreenArrived*100)/nbGreenCars) + "%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
     }else{
         text("0%", finishLine.x + finishLineWidth + 60, finishLine.y + 15);
 
     }
-    text(countRedArrived, finishLine.x + finishLineWidth, finishLine.y + 15);
+    text(countGreenArrived, finishLine.x + finishLineWidth, finishLine.y + 15);
     pop();
 }
 

@@ -25,7 +25,7 @@ function Car(){
                 this.position = finishLine.copy();
                 if(this.trigger){
                     if(this.hasBestGenes){
-                        countRedArrived++;
+                        countGreenArrived++;
                     }else{
                         countBlueArrived++;
                     }
@@ -34,7 +34,7 @@ function Car(){
                 this.trigger = false;
             }
         }
-        var rx = windowWidth/2  - windowWidth/4;
+        var rx = windowWidth/2  - windowWidth/4 - 10;
         var ry = windowHeight/2 - 30;
         var rw = windowWidth/2;
         var rh = 20;
@@ -61,7 +61,7 @@ function Car(){
         if(this.won){
             this.fitness *= multiplierIfWin;
         }else if(this.dead){
-            this.fitness *= multiplierIfLost;
+            this.fitness /= multiplierIfLost;
         }
     }
 
@@ -73,9 +73,12 @@ function Car(){
         push();
         noStroke();
         if(this.hasBestGenes){
-            fill(255, 0, 0, 150);
+            fill(0, 255, 0, 150);
         }else{
             fill(0, 0, 255, 150);
+        }
+        if(this.dead){
+            fill(255, 0, 0, 150);
         }
         translate(this.position.x, this.position.y);
         rotate(this.velocity.heading());
@@ -83,7 +86,6 @@ function Car(){
         this.drawCar();
         pop();
     }
-
     this.drawCar = function(){
         rect(19, 0, 2, 8); //Capot avant
         rect(15, 0, 4, 12); //Capot
