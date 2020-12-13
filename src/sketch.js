@@ -2,6 +2,7 @@
 //Add time remaning as a factor for cars fitness
 //Add magnitude as part of DNA
 //Change graphics
+//Should replace 10% best fitness by 10% best cars according to fitness
 
 var population;
 var lifespanDisplay;
@@ -26,21 +27,21 @@ var finishLineWidth = 100;
 var finishLineHeight = 15;
 
 var magnitude = 0.5; //0.5
-var mutationChance = 0.02; //0.02
+var mutationChance = 0.01; //0.02
 
 //First additional factors
 var multiplierIfWin = 100; //multiply if it hits the finish line
-var multiplierIfDead = 10; //divide if it dies
-var multiplierIfAlive = 10; //multiply if it stays alive
+//var multiplierIfDead = 10; //divide if it dies
+var multiplierIfAlive = 30; //multiply if it stays alive
 
 //Second additional factors
-var multiplierIfGood = 10 //multiply if its fitness value
-var percentageMin = 90; //if superior than this percentage
+var multiplierIfGood = 200 //multiply if its fitness value
+var percentageMin = 95; //if superior than this percentage
 var goodFitnessValue = 0; //init to 0 so it works on first population
 
-var multiplierIfBad = 10; //divide by this value if its fitness value
-var percentageMax = 70;//is inferior compared to this percentage
-var badFitnessValue = 100; //init to 100 so it works on first population
+//var multiplierIfBad = 20; //divide by this value if its fitness value
+//var percentageMax = 70;//is inferior compared to this percentage
+//var badFitnessValue = 100; //init to 100 so it works on first population
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -88,8 +89,8 @@ function applyGeneticAlgorithm(){
     counter = 0;
     oldMaxFitness = maxFitnessDisplay;
     maxFitnessDisplay = population.evaluate();
-    goodFitnessValue = (maxFitnessDisplay*percentageMin)/100;
-    badFitnessValue = (maxFitnessDisplay*percentageMax)/100;
+    //goodFitnessValue = (maxFitnessDisplay*percentageMin)/100;
+    //badFitnessValue = (maxFitnessDisplay*percentageMax)/100;
     population.naturalSelection();
     population.countNbColorCars();
 }

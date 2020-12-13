@@ -46,16 +46,62 @@ function Population(){
             var child = parent1.crossOver(parent2);
             child.mutation();
             var newCar = new Car();
-            console.log(this.listCars[i].fitness);
             if(this.listCars[i].fitness == 1){
                 newCar.hasBestGenes = true;
-            }else if(this.listCars[i].fitness > percentageMax/100){
-                newCar.isOneOfTheBest = true;
             }
             newCar.dna = child;
             newListCars[i] = newCar;
         }
         this.listCars = newListCars;
+    }
+    
+    this.naturalSelection = function(){
+        var newListCars = [];
+        for(var i = 0; i < this.listCars.length; i++){
+            var dnaPopulation = [...this.matingPool];
+            var randomIndex1 = floor(random(dnaPopulation.length));
+            var parent1 = dnaPopulation[randomIndex1];
+            var parent1DNA = parent1.dna; 
+
+            dnaPopulation.splice(dnaPopulation.indexOf(parent1), 1);
+
+            var randomIndex2 = floor(random(dnaPopulation.length));
+            var parent2 = dnaPopulation[randomIndex2];
+            var parent2DNA = parent2.dna; 
+            var child = parent1DNA.crossOver(parent2DNA);
+
+            child.mutation();
+            var newCar = new Car();
+            if(this.listCars[i].fitness == 1){
+                newCar.hasBestGenes = true;
+            }
+            newCar.dna = child;
+            newCar.oldFitness = parent1.fitness;
+            newListCars[i] = newCar;
+        }
+        this.listCars = newListCars;
+        this.findBestCars();
+    }
+
+    this.findBestCars = function(){
+        var map = new Map();
+        for(var i = 0; i < this.listCars.length; i++){
+            map.set(this.listCars[i], this.listCars[i].oldFitness);
+        }
+        var sortedMap = new Map([...map.entries()].sort());
+        var minIndexWanted = floor((sortedMap.size*percentageMin)/100);
+        var cpt = 0;
+        for(var value of sortedMap.values()){
+            if(cpt == minIndexWanted){
+                goodFitnessValue = value;
+            }
+            cpt++;
+        }
+        for(var i = 0; i < this.listCars.length; i++){
+            if(this.listCars[i].oldFitness > goodFitnessValue){
+                this.listCars[i].isOneOfTheBestPercentage = true;
+            }
+        }
     }
 
     this.countNbColorCars = function(){

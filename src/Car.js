@@ -5,11 +5,12 @@ function Car(){
     this.dna = new DNA();
     this.dna.initGenes();
     this.fitness = 0;
+    this.oldFitness = 0;
     this.won = false;
     this.trigger = true;
     this.hasBestGenes = false;
     this.dead = false;
-    this.isOneOfTheBest = false;
+    this.isOneOfTheBestPercentage = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
@@ -71,19 +72,22 @@ function Car(){
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, 100, 0);
-        
+
+        console.log("fitness : " + this.oldFitness);
+        console.log("goodfitness : " + goodFitnessValue);
         if(this.fitness > goodFitnessValue){
-            this.isOneOfTheBest = true;
             this.fitness *= multiplierIfGood;
-        }else if(this.fitness < badFitnessValue){
-            this.fitness /= multiplierIfBad;
         }
+        //else if(this.fitness < badFitnessValue){
+        //    this.fitness /= multiplierIfBad;
+        //}
 
         if(!this.dead){
             this.fitness *= multiplierIfAlive;
-        }else{
-            this.fitness /= multiplierIfDead;
         }
+        //else{
+        //    this.fitness /= multiplierIfDead;
+        //}
 
         if(this.won){
             this.fitness *= multiplierIfWin;
@@ -95,8 +99,8 @@ function Car(){
         noStroke();
         if(this.hasBestGenes){
             fill(0, 255, 0, 150);
-        }else if(this.isOneOfTheBest && !this.hasBestGenes){
-            fill(255, 150);
+        }else if(!this.hasBestGenes && this.isOneOfTheBestPercentage){
+            fill(255, 255, 0, 150);
         }else{
             fill(0, 0, 255, 150);
         }
