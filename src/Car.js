@@ -73,8 +73,6 @@ function Car(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, 100, 0);
 
-        console.log("fitness : " + this.oldFitness);
-        console.log("goodfitness : " + goodFitnessValue);
         if(this.fitness > goodFitnessValue){
             this.fitness *= multiplierIfGood;
         }

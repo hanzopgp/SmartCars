@@ -2,7 +2,6 @@
 //Add time remaning as a factor for cars fitness
 //Add magnitude as part of DNA
 //Change graphics
-//Should replace 10% best fitness by 10% best cars according to fitness
 
 var population;
 var lifespanDisplay;
@@ -10,7 +9,7 @@ var maxFitnessDisplay;
 var oldMaxFitness;
 
 var listWalls = [];
-var thickness = 40;
+var thickness = 30;
 
 var nbCars = 500; //500
 var lifespan = 500; //500
@@ -26,17 +25,17 @@ var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 
-var magnitude = 0.5; //0.5
+var magnitude = 0.5; //0.5 //If magnitude is too high, the cars might go through walls !
 var mutationChance = 0.01; //0.02
 
 //First additional factors
-var multiplierIfWin = 100; //multiply if it hits the finish line
+var multiplierIfWin = 100; //multiply if it hits the finish line //100
 //var multiplierIfDead = 10; //divide if it dies
-var multiplierIfAlive = 30; //multiply if it stays alive
+var multiplierIfAlive = 30; //multiply if it stays alive //30
 
 //Second additional factors
-var multiplierIfGood = 200 //multiply if its fitness value
-var percentageMin = 95; //if superior than this percentage
+var multiplierIfGood = 200 //multiply if its fitness value //200
+var percentageMin = 95; //if superior than this percentage //95
 var goodFitnessValue = 0; //init to 0 so it works on first population
 
 //var multiplierIfBad = 20; //divide by this value if its fitness value
@@ -175,7 +174,7 @@ function drawMaxFitness(){
 	fill(255);
     textSize(18);
     if(maxFitnessDisplay){
-        text("Max fitness : " + floor(maxFitnessDisplay), 30, 106);
+        text("Max fitness : " + floor(maxFitnessDisplay/100), 30, 106);
         //text("Best fitness : " + map(maxFitnessDisplay, 0, maxFitnessDisplay, 0, 1), 30, 106);
     }else{
         text("No value yet !", 30, 106);
