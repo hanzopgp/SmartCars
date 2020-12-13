@@ -46,10 +46,13 @@ function Population(){
             var child = parent1.crossOver(parent2);
             child.mutation();
             var newCar = new Car();
+            console.log(this.listCars[i].fitness);
             if(this.listCars[i].fitness == 1){
                 newCar.hasBestGenes = true;
+            }else if(this.listCars[i].fitness > percentageMax/100){
+                newCar.isOneOfTheBest = true;
             }
-            newCar.setDNA(child);
+            newCar.dna = child;
             newListCars[i] = newCar;
         }
         this.listCars = newListCars;

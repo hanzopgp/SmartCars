@@ -1,5 +1,5 @@
 function Car(){
-    this.position = createVector(width/2, height);
+    this.position = createVector(width/2, height - 30);
     this.velocity = createVector(0);
     this.acceleration = createVector();
     this.dna = new DNA();
@@ -9,6 +9,7 @@ function Car(){
     this.trigger = true;
     this.hasBestGenes = false;
     this.dead = false;
+    this.isOneOfTheBest = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
@@ -70,21 +71,23 @@ function Car(){
     this.calculateFitness = function(){
         var distance = dist(this.position.x, this.position.y, finishLine.x + (finishLineWidth/2), finishLine.y + (finishLineHeight/2));
         this.fitness = map(distance, 0, width, 100, 0);
+        
         if(this.fitness > goodFitnessValue){
+            this.isOneOfTheBest = true;
             this.fitness *= multiplierIfGood;
         }else if(this.fitness < badFitnessValue){
             this.fitness /= multiplierIfBad;
-        }else if(this.won){
-            this.fitness *= multiplierIfWin;
+        }
+
+        if(!this.dead){
+            this.fitness *= multiplierIfAlive;
         }else if(this.dead){
             this.fitness /= multiplierIfDead;
-        }else{
-            this.fitness *= multiplierIfAlive;
         }
-    }
 
-    this.setDNA = function(dna){
-        this.dna = dna;
+        if(this.won){
+            this.fitness *= multiplierIfWin;
+        }
     }
 
     this.show = function(){
@@ -92,6 +95,8 @@ function Car(){
         noStroke();
         if(this.hasBestGenes){
             fill(0, 255, 0, 150);
+        }else if(this.isOneOfTheBest && !this.hasBestGenes){
+            fill(255, 150);
         }else{
             fill(0, 0, 255, 150);
         }

@@ -19,6 +19,7 @@
 - Green cars are the children of former generation's best cars.
 - Red cars are the crashed cars.
 - Blue cars are the normal cars.
+- White cars are the one with a fitness > 90% of max fitness.
 
 ## How to use :
 
@@ -35,5 +36,6 @@
 ## Current TODO :
 
 //Add time remaning as a factor for cars fitness
-//add magnitude as part of DNA
+//Add magnitude as part of DNA
 //Change graphics
+

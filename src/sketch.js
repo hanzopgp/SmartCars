@@ -2,7 +2,6 @@
 //Add time remaning as a factor for cars fitness
 //Add magnitude as part of DNA
 //Change graphics
-//GoodFitnessValue should not be raw, should be depending percentage 
 
 var population;
 var lifespanDisplay;
@@ -12,31 +11,36 @@ var oldMaxFitness;
 var listWalls = [];
 var thickness = 40;
 
-var nbCars = 500;
-var lifespan = 400;
+var nbCars = 500; //500
+var lifespan = 500; //500
 var counter = 0;
 var generationCounter = 0;
 var countBlueArrived = 0;
 var countGreenArrived = 0;
 var nbGreenCars = 0;
 var nbBlueCars = 0;
-var pause = 1;
+var pause = 0;
 
 var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 
-var magnitude = 0.5;
-var mutationChance = 0.02;
+var magnitude = 0.5; //0.5
+var mutationChance = 0.02; //0.02
 
-var multiplierIfWin = 50;
-var multiplierIfDead = 10;
-var multiplierIfAlive = 10;
+//First additional factors
+var multiplierIfWin = 100; //multiply if it hits the finish line
+var multiplierIfDead = 10; //divide if it dies
+var multiplierIfAlive = 10; //multiply if it stays alive
 
-var multiplierIfGood = 5;
-var goodFitnessValue = 90;
-var badFitnessValue = 40;
-var multiplierIfBad = 5;
+//Second additional factors
+var multiplierIfGood = 10 //multiply if its fitness value
+var percentageMin = 90; //if superior than this percentage
+var goodFitnessValue = 0; //init to 0 so it works on first population
+
+var multiplierIfBad = 10; //divide by this value if its fitness value
+var percentageMax = 70;//is inferior compared to this percentage
+var badFitnessValue = 100; //init to 100 so it works on first population
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -53,11 +57,11 @@ function setup(){
 
 function draw(){
     background(0);
+    drawInfo();
+    population.run();
     for(var i = 0; i < listWalls.length; i++){
         listWalls[i].show();
     }
-    drawInfo();
-    population.run();
     counter++;
     if(counter == lifespan){
         generationCounter++;
@@ -72,7 +76,7 @@ function draw(){
 function drawInfo(){
     drawBackgroundTxt();
     drawTimeRemaining();
-    drawMaxFitness(maxFitnessDisplay);
+    drawMaxFitness();
     drawFinishLine();
     drawMaxFitnessDifference();
     drawGenerationCounter();
@@ -84,6 +88,8 @@ function applyGeneticAlgorithm(){
     counter = 0;
     oldMaxFitness = maxFitnessDisplay;
     maxFitnessDisplay = population.evaluate();
+    goodFitnessValue = (maxFitnessDisplay*percentageMin)/100;
+    badFitnessValue = (maxFitnessDisplay*percentageMax)/100;
     population.naturalSelection();
     population.countNbColorCars();
 }
@@ -91,7 +97,6 @@ function applyGeneticAlgorithm(){
 function keyPressed(){
 	if(key == "p"){
 		if(pause == 0){
-            console.log("hi");
 			noLoop();
 			pause = 1;
 		}
