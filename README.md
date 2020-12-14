@@ -2,7 +2,7 @@
 
 # Presentation
 
->This is a car race game played by a genetic algorithm. This is my first program using genetic algorithm. You can see the program [here](https://hanzopgp.github.io/SmartCars/index.html).
+>This is a car race game played by a genetic algorithm. This is my first program using genetic algorithm. You can see the program [here](https://hanzopgp.github.io/SmartCars/index.html). I learnt p5 and genetic algorithms thanks to [Daniel Shiffman](https://shiffman.net/).
 
 ## How does it work :
 
