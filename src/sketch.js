@@ -9,6 +9,8 @@ var lifespanDisplay;
 var maxFitnessDisplay;
 var oldMaxFitness;
 var winTrigger = false;
+var firstTime = true;
+var generationWinner = 0;
 
 var listWalls = [];
 var thickness = 30;
@@ -27,24 +29,24 @@ var finishLine;
 var finishLineWidth = 100;    
 var finishLineHeight = 15;
 
-var magnitude = 0.3; //0.5 //If magnitude is too high, the cars might go through walls !
+var magnitude = 0.5; //0.5 //If magnitude is too high, the cars might go through walls !
 var mutationChance = 0.01; //0.02
 
 //First additional factors
 var multiplierIfWin = 200; //multiply if it hits the finish line //100
 //var multiplierIfDead = 10; //divide if it dies
-var multiplierIfAlive = 30; //multiply if it stays alive //30
+var multiplierIfAlive = 20; //multiply if it stays alive //30
 
 //Second additional factors
 var multiplierIfGood = 100 //multiply if its fitness value //200
-var percentageMin = 95; //if superior than this percentage //95
+var percentageMin = 97; //if superior than this percentage //95
 var goodFitnessValue = 0; //init to 0 so it works on first population
 
 //var multiplierIfBad = 20; //divide by this value if its fitness value
 //var percentageMax = 70;//is inferior compared to this percentage
 //var badFitnessValue = 100; //init to 100 so it works on first population
 
-var muliplierIfNearStartingPoint = 1; //Have to test this one, not sure its working 
+var muliplierIfNearStartingPoint = 20; //Have to test this one, not sure its working 
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -122,6 +124,8 @@ function drawVictory(){
     textSize(30);
     textAlign(CENTER, CENTER);
     text("Victory !", width/2, 150);
+    textSize(15);
+    text("(Generation " + generationWinner, width/2, 190);
     pop();
 }
 

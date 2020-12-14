@@ -75,7 +75,7 @@ function Population(){
             if(this.listCars[i].fitness == 1){
                 newCar.hasBestGenes = true;
             }
-            if(this.listCars[i].position.y > (2*height)/3){
+            if(this.listCars[i].position.y > height/2){
                 newCar.isNearStartPoint = true;
             }
             newCar.dna = child;

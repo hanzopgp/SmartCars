@@ -25,6 +25,10 @@ function Car(){
         if(yMin && yMax){
             if(xMin && xMax){
                 winTrigger = true;
+                if(firstTime){
+                    generationWinner = generationCounter;
+                    firstTime = false;
+                }       
                 this.won = true;
                 this.position = finishLine.copy();
                 if(this.trigger){
