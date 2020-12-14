@@ -11,6 +11,7 @@ function Car(){
     this.hasBestGenes = false;
     this.dead = false;
     this.isOneOfTheBestPercentage = false;
+    this.isNearStartPoint = false;
 
     this.applyForce = function(force){
         this.acceleration.add(force);
@@ -23,6 +24,7 @@ function Car(){
         var xMax = (this.position.x > finishLine.x - ((finishLineWidth/2)));
         if(yMin && yMax){
             if(xMin && xMax){
+                winTrigger = true;
                 this.won = true;
                 this.position = finishLine.copy();
                 if(this.trigger){
@@ -90,6 +92,11 @@ function Car(){
         if(this.won){
             this.fitness *= multiplierIfWin;
         }
+
+        if(this.isNearStartPoint && !this.dead){
+            this.fitness /= muliplierIfNearStartingPoint;
+        }
+
     }
 
     this.show = function(){
