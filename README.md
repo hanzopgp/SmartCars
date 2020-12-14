@@ -38,4 +38,6 @@
 //Add time remaning as a factor for cars fitness
 //Add magnitude as part of DNA
 //Change graphics
+//Mutation rate should decrease when the car finds the finishline ?
+
 

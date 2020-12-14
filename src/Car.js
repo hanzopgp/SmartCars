@@ -86,7 +86,7 @@ function Car(){
         //    this.fitness /= multiplierIfBad;
         //}
 
-        if(!this.dead){
+        if(!this.dead && this.position.y < height/2){
             this.fitness *= multiplierIfAlive;
         }
         //else{

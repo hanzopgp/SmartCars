@@ -15,8 +15,8 @@ var generationWinner = 0;
 var listWalls = [];
 var thickness = 30;
 
-var nbCars = 500; //500
-var lifespan = 550; //500
+var nbCars = 800; //500
+var lifespan = 500; //500
 var counter = 0;
 var generationCounter = 0;
 var countBlueArrived = 0;
@@ -38,7 +38,7 @@ var multiplierIfWin = 200; //multiply if it hits the finish line //100
 var multiplierIfAlive = 20; //multiply if it stays alive //30
 
 //Second additional factors
-var multiplierIfGood = 100 //multiply if its fitness value //200
+var multiplierIfGood = 200 //multiply if its fitness value //200
 var percentageMin = 97; //if superior than this percentage //95
 var goodFitnessValue = 0; //init to 0 so it works on first population
 
@@ -46,7 +46,7 @@ var goodFitnessValue = 0; //init to 0 so it works on first population
 //var percentageMax = 70;//is inferior compared to this percentage
 //var badFitnessValue = 100; //init to 100 so it works on first population
 
-var muliplierIfNearStartingPoint = 20; //Have to test this one, not sure its working 
+var muliplierIfNearStartingPoint = 1; //Have to test this one, not sure its working 
 
 function setup(){
     createCanvas(windowWidth - 40, windowHeight - 40);
@@ -69,7 +69,7 @@ function draw(){
         listWalls[i].show();
     }
     counter++;
-    if(counter == lifespan){
+    if(counter == lifespan || population.isDead()){
         generationCounter++;
         countBlueArrived = 0;
         countGreenArrived = 0;
@@ -125,7 +125,7 @@ function drawVictory(){
     textAlign(CENTER, CENTER);
     text("Victory !", width/2, 150);
     textSize(15);
-    text("(Generation " + generationWinner, width/2, 190);
+    text("(Generation " + generationWinner +")", width/2, 190);
     pop();
 }
 

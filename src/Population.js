@@ -86,6 +86,15 @@ function Population(){
         this.findBestCars();
     }
 
+    this.isDead = function(){
+        for(var i = 0; i < this.listCars.length; i++){
+            if(!this.listCars[i].dead){
+                return false;
+            }
+        }
+        return true;
+    }
+
     this.findBestCars = function(){
         var map = new Map();
         for(var i = 0; i < this.listCars.length; i++){
