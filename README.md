@@ -1,8 +1,22 @@
 # SmartCars
 
-# Presentation
+## Table of contents :
+
+1. [Presentation](#presentation-)
+3. [How to use](#how-to-use-)
+2. [How does it work](#how-does-it-work-)
+4. [Links](#links-)
+
+## Presentation
 
 >This is a car race game played by a genetic algorithm. This is my first program using genetic algorithm. You can see the program [here](https://hanzopgp.github.io/SmartCars/index.html). I learnt p5 and genetic algorithms thanks to [Daniel Shiffman](https://shiffman.net/).
+
+## How to use :
+
+- git clone this repository
+- Put **index.html** in your browser
+- Use 'P' to pause the simulation
+- Settings are currently at the top of **sketch.js**
 
 ## How does it work :
 
@@ -21,23 +35,9 @@
 - Blue cars are the normal cars.
 - Yellow cars are the child of the best cars.
 
-## How to use :
-
-- git clone this repository
-- Put **index.html** in your browser
-- Use 'P' to pause the simulation
-- Settings are currently at the top of **sketch.js**
-
 ## Links :
 
 - https://p5js.org/
 - https://en.wikipedia.org/wiki/Genetic_algorithm
-
-## Current TODO :
-
-//Add time remaning as a factor for cars fitness
-//Add magnitude as part of DNA
-//Change graphics
-//Mutation rate should decrease when the car finds the finishline ?
 
 
