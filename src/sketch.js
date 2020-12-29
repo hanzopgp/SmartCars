@@ -2,7 +2,6 @@
 //Add time remaning as a factor for cars fitness
 //Add magnitude as part of DNA
 //Change graphics
-//Mutation rate should decrease when the car finds the finishline ?
 
 var population;
 var lifespanDisplay;
@@ -15,7 +14,7 @@ var generationWinner = 0;
 var listWalls = [];
 var thickness = 30;
 
-var nbCars = 800; //500
+var nbCars = 500; //500
 var lifespan = 500; //500
 var counter = 0;
 var generationCounter = 0;
